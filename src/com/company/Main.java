@@ -4,31 +4,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Box<Fruit> src = new Box<>();
-        Box<Fruit> dest = new Box<>();
-        Box<Box<Fruit>> dest2 = new Box<>();
-        Box<Object> dest3 = new Box<>();
+        Box<Apple> box3 = new Box<>();
+        box3.put(new Apple());
+        Box<Object> box2 = new Box<>();
+        box2.put(box3);
+        Box<Box<Object>> box1 = new Box<>();
+        box1.put(box2);
 
-        Apple apple = new Apple();
-        apple.setFresh(true);
-
-        src.element = apple;
-        src.element.fresh = (apple.getFresh());
-
-        src.put(apple);
-
-        BoxUtil.copyFromBoxToBox(src, dest);
-
-        BoxUtil.copyFreshFruitFromBoxToBox(src, dest);
-
-        dest2.element = dest;
-        dest2.put(dest);
-
-        dest3.put(dest2);
-
-        BoxUtil.printElementFromTwoBoxes(dest2);
-
-        BoxUtil.printElementFromBoxes(dest3);
-
+        Box<String> box = new Box<>();
+        box.put("String");
+        BoxUtil.printElementFromBoxes(box);
+        //console String
     }
 }

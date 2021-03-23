@@ -2,15 +2,15 @@ package com.company;
 
 public class BoxUtil {
 
-    public static <T> void copyFromBoxToBox(Box<T> src, Box<T> dest) {
+    public static void copyFromBoxToBox(Box<Apple> src, Box<Object> dest) {
 
         dest.element = src.get();
     }
 
-    public static void copyFreshFruitFromBoxToBox(Box<Fruit> src, Box<Fruit> dest) {
+    public static <T> void copyFreshFruitFromBoxToBox(Box<Apple> src, Box<T> dest) {
 
         if (src.element.fresh) {
-            dest.element = src.get();
+            dest.element = (T) src.get();
         }
     }
 
@@ -22,10 +22,12 @@ public class BoxUtil {
 
     public static void printElementFromBoxes(Box<?> box) {
 
-        if (box.get() instanceof Fruit) {
-            System.out.println(box.get().toString());
-        } else {
+        if (box.get() instanceof Box) {
             printElementFromBoxes((Box<?>) box.get());
+        } else {
+            System.out.println(box.get().toString());
         }
     }
 }
+
+
